@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的19岁</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 新增：装饰元素容器（漂浮爱心/光点） -->
+    <div class="decor-container" id="decorContainer"></div>
+
+    <!-- 初始文案容器 -->
+    <div class="initial-title">
+        <h2>致我的19岁</h2>
+        <p>点击下方按钮，解锁专属回忆</p>
+    </div>
+
+    <!-- 核心按钮 -->
+    <button id="ageBtn">我的19岁</button>
+
+    <!-- 提示文字 -->
+    <p id="result"></p>
+
+    <!-- 留言功能模块（默认隐藏，图片播放完后显示） -->
+    <div class="message-module hide" id="messageModule">
+        <h3 class="message-title">留下你的祝福吧</h3>
+        <form class="message-form" id="messageForm">
+            <input type="text" class="message-name" id="messageName" placeholder="请输入你的昵称" required>
+            <textarea class="message-content" id="messageContent" placeholder="请输入你的留言/祝福" rows="4" required></textarea>
+            <button type="submit" class="message-submit">提交留言</button>
+        </form>
+        <div class="message-list" id="messageList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

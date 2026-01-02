@@ -1,0 +1,284 @@
+/* 页面基础样式 */
+body {
+    text-align: center;
+    background: linear-gradient(120deg, #f8f5f0, #f0e9e0);
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 新增：装饰元素容器（漂浮效果） */
+.decor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* 置于底层，不遮挡按钮和文字 */
+    pointer-events: none; /* 不影响按钮点击 */
+}
+
+/* 新增：漂浮爱心样式 */
+.heart-decor {
+    position: absolute;
+    color: #e67e22;
+    opacity: 0.7;
+    font-size: 16px;
+    animation: float 6s linear infinite;
+    transform: translateY(100vh);
+}
+
+/* 新增：漂浮光点样式 */
+.dot-decor {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #d35400;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 8s linear infinite;
+    transform: translateY(100vh);
+}
+
+/* 新增：漂浮动画 */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 初始文案样式（轻微优化，更醒目） */
+.initial-title {
+    margin-bottom: 30px;
+    color: #5c4b42;
+    z-index: 10; /* 置于装饰元素上层 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 新增文字阴影，更立体 */
+}
+.initial-title h2 {
+    font-size: 36px; /* 略微调大，更醒目 */
+    margin: 0 0 10px 0;
+    font-weight: 700; /* 加粗 */
+}
+.initial-title p {
+    font-size: 18px; /* 略微调大 */
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* 按钮样式（强化交互效果，更具娱乐性） */
+#ageBtn {
+    padding: 20px 40px;
+    font-size: 24px; /* 调大字体 */
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 50px; /* 圆形按钮，更美观 */
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+    transition: all 0.3s ease; /* 新增所有属性过渡 */
+    overflow: hidden; /* 隐藏伪元素溢出 */
+}
+
+/* 按钮 hover 效果（放大+加深颜色+阴影强化） */
+#ageBtn:hover {
+    background: #d35400;
+    transform: scale(1.08); /* 放大效果更明显 */
+    box-shadow: 0 6px 20px rgba(211, 84, 0, 0.4);
+}
+
+/* 新增：按钮点击波纹效果（提升交互娱乐性） */
+#ageBtn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: btnRipple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes btnRipple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* 全屏图片容器：多张平铺，支持淡出动画 */
+.image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+/* 每张图片样式：平铺铺满，带弹出过渡 */
+.image-container img {
+    width: calc(100% / 3);
+    height: calc(100% / 3);
+    object-fit: cover;
+    border: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 图片弹出激活状态 */
+.image-container img.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 提示文字样式：调大字体+加粗 */
+#result {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    font-size: 36px;
+    color: #5c4b42;
+    text-align: center;
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 2;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* 隐藏类：用于隐藏元素 */
+.hide {
+    display: none;
+}
+
+/* 留言模块样式 */
+.message-module {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.message-title {
+    font-size: 28px;
+    color: #5c4b42;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.message-name {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #e0d6cc;
+    border-radius: 6px;
+    background: #fff;
+    color: #5c4b42;
+    outline: none;
+}
+
+.message-content {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #e0d6cc;
+    border-radius: 6px;
+    background: #fff;
+    color: #5c4b42;
+    outline: none;
+    resize: none;
+}
+
+.message-submit {
+    padding: 12px;
+    font-size: 18px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.message-submit:hover {
+    background: #d35400;
+}
+
+.message-list {
+    max-height: 200px;
+    overflow-y: auto;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-message {
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    text-align: left;
+    border: 1px solid #e0d6cc;
+}
+
+.message-nickname {
+    font-size: 18px;
+    font-weight: 700;
+    color: #d35400;
+    margin: 0 0 5px 0;
+}
+
+.message-text {
+    font-size: 16px;
+    color: #5c4b42;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #998877;
+    margin: 0;
+    text-align: right;
+}
